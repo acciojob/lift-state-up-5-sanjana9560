@@ -1,63 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 const ChildComponent = ({ isLoggedIn, onLogin }) => {
-  const [userName, setUserName] = useState("")
-  const [userPassword, setUserPassword] = useState("")
-
-  const styles = {
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '100vh',
-      background: 'linear-gradient(135deg, #74ABE2, #5563DE)',
-      fontFamily: 'Arial, sans-serif',
-    },
-    form: {
-      background: 'white',
-      padding: '40px 50px',
-      borderRadius: '15px',
-      boxShadow: '0 8px 20px rgba(0,0,0,0.2)',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '15px',
-      width: '300px',
-    },
-    label: {
-      fontSize: '16px',
-      fontWeight: '600',
-      color: '#333',
-    },
-    input: {
-      padding: '10px',
-      borderRadius: '8px',
-      border: '1px solid #ccc',
-      outline: 'none',
-      fontSize: '14px',
-    },
-    button: {
-      background: '#5563DE',
-      color: 'white',
-      padding: '10px',
-      border: 'none',
-      borderRadius: '8px',
-      cursor: 'pointer',
-      fontSize: '16px',
-      fontWeight: '600',
-      marginTop: '10px',
-      transition: 'background 0.3s',
-    },
-  }
+  const [userName, setUserName] = useState("");
+  const [userPassword, setUserPassword] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if (userName && userPassword) {
-      onLogin()
-    } else {
-      alert("Please enter username and password!")
-    }
-  }
+    e.preventDefault();
+    // Call parent function on login
+    onLogin();
+  };
 
   return (
     <div style={styles.container}>
@@ -65,15 +16,19 @@ const ChildComponent = ({ isLoggedIn, onLogin }) => {
         <label style={styles.label}>Username</label>
         <input
           type="text"
-          style={styles.input}
+          value={userName}
           onChange={(e) => setUserName(e.target.value)}
+          style={styles.input}
+          required
         />
 
         <label style={styles.label}>Password</label>
         <input
           type="password"
-          style={styles.input}
+          value={userPassword}
           onChange={(e) => setUserPassword(e.target.value)}
+          style={styles.input}
+          required
         />
 
         <button type="submit" style={styles.button}>
@@ -81,7 +36,45 @@ const ChildComponent = ({ isLoggedIn, onLogin }) => {
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default ChildComponent
+// Inline styling
+const styles = {
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+    backgroundColor: "#f4f4f4",
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "white",
+    padding: "30px",
+    borderRadius: "10px",
+    boxShadow: "0px 0px 10px rgba(0,0,0,0.1)",
+    width: "300px",
+  },
+  label: {
+    marginBottom: "8px",
+    fontWeight: "bold",
+  },
+  input: {
+    marginBottom: "15px",
+    padding: "8px",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+  },
+  button: {
+    backgroundColor: "#007BFF",
+    color: "white",
+    border: "none",
+    padding: "10px",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
+};
+
+export default ChildComponent;
