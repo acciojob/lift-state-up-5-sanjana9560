@@ -5,9 +5,11 @@ import ChildComponent from "./ChildComponent";
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
+const handleSubmit = (e) => {
+  e.preventDefault();
+  onLogin();
+};
+
 
   return (
     <div>
